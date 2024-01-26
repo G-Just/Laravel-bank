@@ -26,8 +26,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Clients
 Route::get('/clients', [ClientController::class, 'index'])->name('clients');
-Route::get('clients/new/', [ClientController::class, 'create'])->name('clients.create');
+Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+Route::get('/clients/{client}', [ClientController::class, 'show'])->name('clients.show');
 
 // Accounts
-Route::get('accounts/new/', [AccountController::class, 'create'])->name('accounts.create');
-Route::get('accounts/transfer/', [AccountController::class, 'edit'])->name('accounts.transfer');
+Route::get('/accounts/create', [AccountController::class, 'create'])->name('accounts.create');
+Route::get('/accounts/transfer', [AccountController::class, 'edit'])->name('accounts.transfer');

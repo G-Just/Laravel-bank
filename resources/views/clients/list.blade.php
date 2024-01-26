@@ -27,7 +27,7 @@
 
         <div
             class="p-6 mb-6 border-2 rounded-lg hover:bg-neutral-900 hover:border-lime-600 h-72 bg-neutral-950 border-neutral-800">
-            <a href="">
+            <a href="{{ route('clients.show', ['client' => 1]) }}">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <img class="object-cover w-10 h-10 mr-2 rounded-full"
