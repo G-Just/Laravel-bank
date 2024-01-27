@@ -15,30 +15,29 @@
             <img class="w-28 h-w-28" src="{{ asset('images/laravel_icon.svg') }}" alt="Logo">
             <p class="mt-2 font-bold tracking-wide">Laravel Bank</p>
         </div>
-        <form class="flex flex-col w-2/3 gap-4 max-sm:w-full max-sm:px-4 max-md:w-3/4" method="POST"
+        <form class="flex flex-col w-2/3 gap-10 max-sm:w-full max-sm:px-4 max-md:w-3/4" method="POST"
             action="{{ route('login') }}">
             @csrf
-            <div class="flex flex-col items-start gap-2">
-                <label for="email" class="col-md-4 col-form-label text-md-end"></label>
-                <label for="email">Email</label>
-                <input
-                    class="w-full px-3 py-2 border-2 focus:outline-none focus:ring-2 ring-lime-600 placeholder:text-neutral-700 focus:bg-neutral-900 hover:border-lime-800 rounded-xl bg-neutral-950 border-neutral-800"
-                    type="text" name="email" id="email" placeholder="Enter your email">
+            <div class="relative">
+                <p class="absolute pt-0 pb-0 pl-2 pr-2 mb-0 ml-2 mr-0 -mt-3 font-medium bg-neutral-950">
+                    Email</p>
+                <input placeholder="email@domain.com" type="text" name='email'
+                    class="block w-full py-4 pl-4 pr-4 mt-2 mb-0 ml-0 mr-0 text-base border rounded-md border-neutral-600 placeholder-neutral-700 focus:outline-none focus:border-neutral-500 bg-neutral-950 @error('email') border-red-500  @enderror" />
                 @error('email')
-                    <span class="" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                    <p
+                        class="absolute pt-0 pb-0 pl-2 pr-2 mb-0 ml-2 mr-0 -mt-3 font-medium text-red-500 right-6 bg-neutral-950">
+                        {{ $message }}</p>
                 @enderror
             </div>
-            <div class="flex flex-col items-start gap-2">
-                <label for="password">Password</label>
-                <input
-                    class="w-full px-3 py-2 border-2 focus:outline-none focus:ring-2 ring-lime-600 placeholder:text-neutral-700 focus:bg-neutral-900 hover:border-lime-800 rounded-xl bg-neutral-950 border-neutral-800"
-                    type="password" name="password" id="password" placeholder="Enter your password">
+            <div class="relative">
+                <p class="absolute pt-0 pb-0 pl-2 pr-2 mb-0 ml-2 mr-0 -mt-3 font-medium bg-neutral-950">
+                    Password</p>
+                <input placeholder="Password" type="password" name='password'
+                    class="block w-full py-4 pl-4 pr-4 mt-2 mb-0 ml-0 mr-0 text-base border rounded-md border-neutral-600 placeholder-neutral-700 focus:outline-none focus:border-neutral-500 bg-neutral-950 @error('password') border-red-500  @enderror" />
                 @error('password')
-                    <span class="" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                    <p
+                        class="absolute pt-0 pb-0 pl-2 pr-2 mb-0 ml-2 mr-0 -mt-3 font-medium text-red-500 right-6 bg-neutral-950">
+                        {{ $message }}</p>
                 @enderror
             </div>
             <button

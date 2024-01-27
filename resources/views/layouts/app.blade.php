@@ -39,7 +39,7 @@
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                 <img class="w-6 h-w-6" src="{{ asset('images/logout.svg') }}" alt="Logout">
-                <p class="max-xl:hidden">{{ Auth::user()->name }}</p>
+                <p class="max-xl:hidden">{{ Auth::user()->name ?? 'FAILED' }}</p>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
