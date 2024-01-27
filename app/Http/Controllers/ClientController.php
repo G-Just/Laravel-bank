@@ -64,6 +64,8 @@ class ClientController extends Controller
 
         Client::create($request->all());
 
+        session()->flash('message', 'Client created successfully.');
+
         return redirect()->route('clients');
     }
 
