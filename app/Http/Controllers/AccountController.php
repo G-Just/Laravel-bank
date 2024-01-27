@@ -22,16 +22,21 @@ class AccountController extends Controller
      */
     public function create()
     {
-        $accounts = Account::all('IBAN');
-        $number = $accounts[0]->IBAN;
-        while ($number === $accounts[0]->IBAN) { // Ensures that generated IBAN is unique
+        $accounts = [];
+        foreach (Account::all('IBAN') as $account) {
+            $accounts[] = $account->IBAN;
+        }
+        $number = $accounts[0];
+        while (in_array($number, $accounts)) { // Ensures that generated IBAN is unique
             $number = '';
             foreach (range(1, 11) as $digit) {
                 $number = $number . (string)rand(0, 9);
             }
             $IBAN = 'LT0099999' . $number;
         }
+
         $clients = Client::all()->sortBy('firstName');
+
         return view('accounts.create', ['clients' => $clients, 'IBAN' => $IBAN]);
     }
 
@@ -45,6 +50,8 @@ class AccountController extends Controller
         ]);
 
         Account::create($request->all());
+
+        session()->flash('message', 'Account created successfully.');
 
         return redirect()->route('clients');
     }
