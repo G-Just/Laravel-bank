@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Models\Account;
 
 class ClientController extends Controller
 {
@@ -13,7 +14,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('clients.list');
+        $clients = Client::all()->sortBy('lastName');
+        $accounts = Account::all();
+        return view('clients.list', ['clients' => $clients, 'accounts' => $accounts]);
     }
 
     /**

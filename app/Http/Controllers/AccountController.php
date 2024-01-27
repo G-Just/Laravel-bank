@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
+use App\Models\Client;
 
 class AccountController extends Controller
 {
@@ -21,7 +22,17 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('accounts.create');
+        $accounts = Account::all('IBAN');
+        $number = $accounts[0]->IBAN;
+        while ($number === $accounts[0]->IBAN) { // Ensures that generated IBAN is unique
+            $number = '';
+            foreach (range(1, 11) as $digit) {
+                $number = $number . (string)rand(0, 9);
+            }
+            $IBAN = 'LT0099999' . $number;
+        }
+        $clients = Client::all()->sortBy('firstName');
+        return view('accounts.create', ['clients' => $clients, 'IBAN' => $IBAN]);
     }
 
     /**
@@ -29,7 +40,13 @@ class AccountController extends Controller
      */
     public function store(StoreAccountRequest $request)
     {
-        //
+        $request->validate([
+            'client_id' => 'numeric'
+        ]);
+
+        Account::create($request->all());
+
+        return redirect()->route('clients');
     }
 
     /**
