@@ -74,7 +74,8 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return view('clients.show', ['client' => $client]);
+        $accounts = Account::all()->where('client_id', $client->id);
+        return view('clients.show', ['client' => $client, 'accounts' => $accounts]);
     }
 
     /**
