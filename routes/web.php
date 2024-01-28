@@ -25,18 +25,19 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Clients
-Route::get('/clients', [ClientController::class, 'index'])->name('clients');
-Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
-Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
-Route::get('/clients/{client}', [ClientController::class, 'show'])->name('clients.show');
+Route::prefix('/clients')->group(function () {
+    Route::get('/', [ClientController::class, 'index'])->name('clients');
+    Route::get('/create', [ClientController::class, 'create'])->name('clients.create');
+    Route::post('/', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('/{client}', [ClientController::class, 'show'])->name('clients.show');
+    Route::get('/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+    Route::put('/{client}', [ClientController::class, 'update'])->name('clients.update');
+    Route::delete('/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+});
 
 // Accounts
 Route::get('/accounts/create', [AccountController::class, 'create'])->name('accounts.create');
 Route::post('/accounts', [AccountController::class, 'store'])->name('accounts.store');
 // Route::get('/accounts/transfer', [AccountController::class, 'edit'])->name('accounts.transfer');
 Route::get('/accounts/{account}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
-Route::patch('/accounts/{account}', [AccountController::class, 'update'])->name('accounts.update');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::put('/accounts/{account}', [AccountController::class, 'update'])->name('accounts.update');

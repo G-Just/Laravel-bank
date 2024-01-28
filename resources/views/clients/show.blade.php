@@ -72,14 +72,9 @@
             </div>
         </div>
         <div class="flex flex-col items-center col-span-3 row-span-2 gap-6 p-10 bg-neutral-950">
-            <a href="" class="w-full">
+            <a href="{{ route('clients.edit', ['client' => $client->id]) }}" class="w-full">
                 <div class="w-full p-6 text-xl text-center border-2 hover:border-lime-300 border-neutral-600">
-                    Change First name
-                </div>
-            </a>
-            <a href="" class="w-full">
-                <div class="w-full p-6 text-xl text-center border-2 hover:border-lime-300 border-neutral-600">
-                    Change Last name
+                    Edit Client Details
                 </div>
             </a>
             <a href="" class="w-full mt-6">
