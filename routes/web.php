@@ -33,7 +33,9 @@ Route::get('/clients/{client}', [ClientController::class, 'show'])->name('client
 // Accounts
 Route::get('/accounts/create', [AccountController::class, 'create'])->name('accounts.create');
 Route::post('/accounts', [AccountController::class, 'store'])->name('accounts.store');
-Route::get('/accounts/transfer', [AccountController::class, 'edit'])->name('accounts.transfer');
+// Route::get('/accounts/transfer', [AccountController::class, 'edit'])->name('accounts.transfer');
+Route::get('/accounts/{account}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
+Route::patch('/accounts/{account}', [AccountController::class, 'update'])->name('accounts.update');
 
 Auth::routes();
 

@@ -8,17 +8,39 @@
             <p class="text-center text-neutral-600">{{ $client->firstName }} {{ $client->lastName }}</p>
             <p class="text-center text-neutral-600">{{ $client->personalCode }}</p>
         </div>
-        <div class="col-span-4 bg-neutral-950">Balance</div>
+        <div class="flex flex-col items-center justify-start col-span-4 gap-4 p-20 bg-neutral-950">
+            <p class="text-3xl">Total Balance</p>
+            <hr class="w-full border-neutral-600">
+            <p class="text-6xl text-lime-300"><span class="mr-0.5">$</span>
+                @php
+                    $sum = 0;
+                    foreach ($accounts as $account) {
+                        if ($account->client_id === $client->id) {
+                            $sum += $account->balance;
+                        }
+                    }
+                    echo number_format($sum, 2);
+                @endphp</p>
+        </div>
         <div class="col-span-5 bg-neutral-950">Stats</div>
-        <div class="col-span-3 row-span-2 bg-neutral-950">Options</div>
-        <div class="col-span-3 bg-neutral-950">Deposit</div>
-        <div class="col-span-3 bg-neutral-950">Withdraw</div>
-        <div class="col-span-3 bg-neutral-950">Delete</div>
+        <div class="grid col-span-3 row-span-2 gap-2 bg-neutral-950">Options</div>
+        <div class="flex flex-col items-center justify-center h-40 col-span-3 gap-5 font-bold bg-neutral-950">
+            <img class="w-14 h-14" src="{{ asset('images/deposit.svg') }}" alt="Deposit">
+            Deposit
+        </div>
+        <div class="flex flex-col items-center justify-center h-40 col-span-3 gap-5 font-bold bg-neutral-950">
+            <img class="w-14 h-14" src="{{ asset('images/withdraw.svg') }}" alt="Withdraw">
+            Withdraw
+        </div>
+        <div class="flex flex-col items-center justify-center h-40 col-span-3 gap-5 font-bold bg-neutral-950">
+            <img class="w-14 h-14" src="{{ asset('images/delete.svg') }}" alt="Delete">
+            Delete
+        </div>
         <div class="w-full col-span-9">
             <table class="w-full text-white border-separate">
                 <thead class="text-black bg-lime-400">
                     <tr>
-                        <th class="p-3">Select</th>
+                        <th class="p-3">Action</th>
                         <th class="p-3">Account Number (IBAN)</th>
                         <th class="p-3 text-center">Balance</th>
                     </tr>
@@ -26,7 +48,10 @@
                 <tbody>
                     @foreach ($accounts as $account)
                         <tr class="bg-neutral-950">
-                            <td class="text-center"><input type="radio" name="selected"></td>
+                            <td><a class="flex justify-center gap-2"
+                                    href="{{ route('accounts.edit', ['account' => $account->id]) }}"><img class="w-5 h-5"
+                                        src="{{ asset('images/edit.svg') }}" alt="Edit">Edit</a>
+                            </td>
                             <td class="p-3">
                                 <div class="flex align-items-center">
                                     <div class="ml-3">
@@ -47,5 +72,6 @@
                 <tbody>
             </table>
         </div>
+        </form>
     </div>
 @endsection

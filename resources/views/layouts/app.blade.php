@@ -22,16 +22,16 @@
                     alt="Logo"></a>
         </div>
         <div class="flex justify-center gap-20 mt-2 text-nowrap max-xl:gap-10 max-lg:text-xs">
-            <a class="text-lg hover:underline hover:text-lime-400 underline-offset-8"
+            <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
                 href="{{ route('clients') }}">Client
                 List</a>
-            <a class="text-lg hover:underline hover:text-lime-400 underline-offset-8"
+            <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
                 href="{{ route('clients.create') }}">New Client</a>
-            <a class="text-lg hover:underline hover:text-lime-400 underline-offset-8"
+            <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
                 href="{{ route('accounts.create') }}">New
                 Account</a>
-            <a class="text-lg hover:underline hover:text-lime-400 underline-offset-8"
-                href="{{ route('accounts.transfer') }}">Transfer
+            <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
+                href="{{-- {{ route('accounts.transfer') }} --}}">Transfer
                 funds</a>
         </div>
         <div class="flex items-center justify-end w-2/12 mt-2">
