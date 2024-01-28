@@ -22,8 +22,72 @@
                     echo number_format($sum, 2);
                 @endphp</p>
         </div>
-        <div class="col-span-5 bg-neutral-950">Stats</div>
-        <div class="grid col-span-3 row-span-2 gap-2 bg-neutral-950">Options</div>
+        <div class="grid grid-cols-2 col-span-5 gap-10 p-10 bg-neutral-950">
+            <div class="text-xl text-center">
+                <p>Owned accounts</p>
+                <hr class="my-2">
+                <p class="text-lime-300">
+                    @php
+                        $count = 0;
+                        foreach ($accounts as $account) {
+                            $count++;
+                        }
+                        echo $count;
+                    @endphp
+                </p>
+            </div>
+            <div class="text-xl text-center">
+                <p>Average account balance</p>
+                <hr class="my-2">
+                <p class="text-lime-300">$<span class="mx-0.5">
+                        @php
+                            $balanceArray = [];
+                            foreach ($accounts as $account) {
+                                $balanceArray[] = $account->balance;
+                            }
+                            echo number_format(array_sum($balanceArray) / count($balanceArray), 2);
+                        @endphp
+                    </span>
+                </p>
+            </div>
+            <div class="text-xl text-center">
+                <p>Maximum account balance</p>
+                <hr class="my-2">
+                <p class="text-lime-300">$<span class="mx-0.5">
+                        @php
+                            echo number_format(max($balanceArray), 2);
+                        @endphp
+                    </span>
+                </p>
+            </div>
+            <div class="text-xl text-center">
+                <p>Minimum account balance</p>
+                <hr class="my-2">
+                <p class="text-lime-300">$<span class="mx-0.5">
+                        @php
+                            echo number_format(min($balanceArray), 2);
+                        @endphp
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="flex flex-col items-center col-span-3 row-span-2 gap-6 p-10 bg-neutral-950">
+            <a href="" class="w-full">
+                <div class="w-full p-6 text-xl text-center border-2 hover:border-lime-300 border-neutral-600">
+                    Change First name
+                </div>
+            </a>
+            <a href="" class="w-full">
+                <div class="w-full p-6 text-xl text-center border-2 hover:border-lime-300 border-neutral-600">
+                    Change Last name
+                </div>
+            </a>
+            <a href="" class="w-full mt-6">
+                <div class="w-full p-6 text-xl text-center border-2 border-red-600 hover:bg-red-600 hover:text-white">
+                    Delete Client
+                </div>
+            </a>
+        </div>
         <div class="flex flex-col items-center justify-center h-40 col-span-3 gap-5 font-bold bg-neutral-950">
             <img class="w-14 h-14" src="{{ asset('images/deposit.svg') }}" alt="Deposit">
             Deposit
