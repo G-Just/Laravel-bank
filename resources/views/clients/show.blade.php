@@ -12,41 +12,22 @@
             <p class="text-3xl">Total Balance</p>
             <hr class="w-full border-neutral-600">
             <p class="text-6xl text-lime-300"><span class="mr-0.5">$</span>
-                @php
-                    $sum = 0;
-                    foreach ($accounts as $account) {
-                        if ($account->client_id === $client->id) {
-                            $sum += $account->balance;
-                        }
-                    }
-                    echo number_format($sum, 2);
-                @endphp</p>
+                {{ number_format($accounts->sum('balance'), 2) }}
+            </p>
         </div>
         <div class="grid grid-cols-2 col-span-5 gap-10 p-10 bg-neutral-950">
             <div class="text-xl text-center">
                 <p>Owned accounts</p>
                 <hr class="my-2">
                 <p class="text-lime-300">
-                    @php
-                        $count = 0;
-                        foreach ($accounts as $account) {
-                            $count++;
-                        }
-                        echo $count;
-                    @endphp
+                    {{ $accounts->count() }}
                 </p>
             </div>
             <div class="text-xl text-center">
                 <p>Average account balance</p>
                 <hr class="my-2">
                 <p class="text-lime-300">$<span class="mx-0.5">
-                        @php
-                            $balanceArray = [];
-                            foreach ($accounts as $account) {
-                                $balanceArray[] = $account->balance;
-                            }
-                            echo number_format(array_sum($balanceArray) / count($balanceArray), 2);
-                        @endphp
+                        {{ $accounts->avg('balance') }}
                     </span>
                 </p>
             </div>
@@ -54,9 +35,7 @@
                 <p>Maximum account balance</p>
                 <hr class="my-2">
                 <p class="text-lime-300">$<span class="mx-0.5">
-                        @php
-                            echo number_format(max($balanceArray), 2);
-                        @endphp
+                        {{ $accounts->max('balance') }}
                     </span>
                 </p>
             </div>
@@ -64,9 +43,7 @@
                 <p>Minimum account balance</p>
                 <hr class="my-2">
                 <p class="text-lime-300">$<span class="mx-0.5">
-                        @php
-                            echo number_format(min($balanceArray), 2);
-                        @endphp
+                        {{ $accounts->min('balance') }}
                     </span>
                 </p>
             </div>
@@ -105,7 +82,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($accounts as $account)
+                    @forelse ($accounts as $account)
                         <tr class="bg-neutral-950">
                             <td><a class="flex justify-center gap-2"
                                     href="{{ route('accounts.edit', ['account' => $account->id]) }}"><img class="w-5 h-5"
@@ -127,7 +104,9 @@
                                 <p><span class="mx-0.5">$</span>{{ $account->balance }}</p>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        No data found
+                    @endforelse
                 <tbody>
             </table>
         </div>

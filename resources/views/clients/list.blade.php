@@ -24,7 +24,7 @@
     <div class="grid grid-cols-3 px-10 max-2xl:grid-cols-2 max-lg:grid-cols-1 sm:gap-x-6">
 
         {{-- Individual client cards --}}
-        @foreach ($clients as $client)
+        @forelse ($clients as $client)
             <div
                 class="p-6 mb-6 border-2 rounded-lg hover:bg-neutral-900 hover:border-lime-600 h-72 bg-neutral-950 border-neutral-800">
                 <a href="{{ route('clients.show', ['client' => $client->id]) }}">
@@ -46,7 +46,8 @@
                                     }
                                 }
                                 echo number_format($sum, 2);
-                            @endphp</p>
+                            @endphp
+                        </p>
                     </div>
                     <div class="flex flex-col w-full h-32 gap-2 pr-2 mt-8 overflow-y-auto">
                         @foreach ($accounts as $account)
@@ -66,15 +67,7 @@
                                     d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
                             </svg>
                             <span class="mr-1">
-                                @php
-                                    $count = 0;
-                                    foreach ($accounts as $account) {
-                                        if ($account->client_id === $client->id) {
-                                            $count++;
-                                        }
-                                    }
-                                    echo $count;
-                                @endphp
+                                {{ $accounts->countBy('client_id')->get($client->id) }}
                             </span>Accounts
                         </div>
                         <div class="flex items-center">
@@ -92,6 +85,8 @@
                     </div>
                 </a>
             </div>
-        @endforeach
+        @empty
+            <p>No data found</p>
+        @endforelse
     </div>
 @endsection
