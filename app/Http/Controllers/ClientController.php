@@ -93,10 +93,8 @@ class ClientController extends Controller
             'firstName' => 'required|string|min:3',
             'lastName' => 'required|string|min:3',
         ]);
-        $client = Client::find($client->id);
-        $client->firstName = $request->input(('firstName'));
-        $client->lastName = $request->input(('lastName'));
-        $client->update();
+
+        $client->update($request->all());
 
         return redirect()->route('clients.show', ['client' => $client->id])->with('message', 'Client details updated successfully.');
     }
