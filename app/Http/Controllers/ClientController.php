@@ -16,7 +16,7 @@ class ClientController extends Controller
     {
         $clients = Client::all()->sortBy('lastName');
         $accounts = Account::all();
-        return view('clients.list', ['clients' => $clients, 'accounts' => $accounts]);
+        return view('clients.list', compact(['clients', 'accounts']));
     }
 
     /**
@@ -73,7 +73,7 @@ class ClientController extends Controller
     public function show(Client $client)
     {
         $accounts = Account::all()->where('client_id', $client->id);
-        return view('clients.show', ['client' => $client, 'accounts' => $accounts]);
+        return view('clients.show', compact(['client', 'accounts']));
     }
 
     /**
@@ -81,7 +81,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('clients.edit', ['client' => $client]);
+        return view('clients.edit', compact(['client']));
     }
 
     /**
@@ -96,7 +96,15 @@ class ClientController extends Controller
 
         $client->update($request->all());
 
-        return redirect()->route('clients.show', ['client' => $client->id])->with('message', 'Client details updated successfully.');
+        return redirect()->route('clients.show', compact(['client']))->with('message', 'Client details updated successfully.');
+    }
+
+    /**
+     * Display the specified resource removing confirmation.
+     */
+    public function delete(Client $client)
+    {
+        return view('clients.delete', compact(['client']));
     }
 
     /**
@@ -104,6 +112,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        //TODO: check if the total account balance is 0, if not redirect back with message.
+        // Else just delete and return to listing with a message.
     }
 }
