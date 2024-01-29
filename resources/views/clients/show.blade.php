@@ -54,7 +54,7 @@
                     Edit Client Details
                 </div>
             </a>
-            <a href="" class="w-full mt-6">
+            <a href="{{ route('clients.delete', $client) }}" class="w-full mt-6">
                 <div class="w-full p-6 text-xl text-center border-2 border-red-600 hover:bg-red-600 hover:text-white">
                     Delete Client
                 </div>
