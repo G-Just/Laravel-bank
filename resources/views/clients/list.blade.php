@@ -30,7 +30,7 @@
                 <a href="{{ route('clients.show', ['client' => $client->id]) }}">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <img class="object-cover w-10 h-10 mr-2 rounded-full" src="{{ asset('images/pfp.png') }}"
+                            <img class="object-cover w-10 h-10 mr-2 rounded-full" src="{{ asset('images/pfp.jpg') }}"
                                 alt="profile" />
                             <div>
                                 <h3 class="text-lg font-semibold">{{ $client->firstName }} {{ $client->lastName }}</h3>

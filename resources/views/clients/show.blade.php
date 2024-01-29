@@ -3,7 +3,7 @@
 @section('content')
     <div class="grid w-4/5 grid-cols-12 gap-2 mx-auto mt-10">
         <div class="flex flex-col items-center justify-start col-span-3 pt-8 pb-10 bg-neutral-950">
-            <img class="w-h-28 h-28" src="{{ asset('images/pfp.png') }}" alt="">
+            <img class="rounded-full w-h-28 h-28" src="{{ asset('images/pfp.jpg') }}" alt="">
             <p class="my-5 text-4xl font-bold text-center text-lime-300">Hi, {{ $client->firstName }}</p>
             <p class="text-center text-neutral-600">{{ $client->firstName }} {{ $client->lastName }}</p>
             <p class="text-center text-neutral-600">{{ $client->personalCode }}</p>
