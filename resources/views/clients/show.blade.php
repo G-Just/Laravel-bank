@@ -27,7 +27,7 @@
                 <p>Average account balance</p>
                 <hr class="my-2">
                 <p class="text-lime-300">$<span class="mx-0.5">
-                        {{ $accounts->avg('balance') }}
+                        {{ number_format($accounts->avg('balance'), 2) }}
                     </span>
                 </p>
             </div>
