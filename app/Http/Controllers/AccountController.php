@@ -49,11 +49,9 @@ class AccountController extends Controller
             'client_id' => 'numeric'
         ]);
 
-        Account::create($request->all());
+        Account::create([...$request->all(), 'balance' => 0]);
 
-        session()->flash('message', 'Account created successfully.');
-
-        return redirect()->route('clients');
+        return redirect()->route('clients')->with('message', 'Account created successfully.');
     }
 
     /**

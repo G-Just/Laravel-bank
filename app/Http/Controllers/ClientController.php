@@ -64,9 +64,7 @@ class ClientController extends Controller
 
         Client::create($request->all());
 
-        session()->flash('message', 'Client created successfully.');
-
-        return redirect()->route('clients');
+        return redirect()->route('clients')->with('message', 'Client created successfully.');
     }
 
     /**
@@ -100,9 +98,7 @@ class ClientController extends Controller
         $client->lastName = $request->input(('lastName'));
         $client->update();
 
-        session()->flash('message', 'Client details updated successfully.');
-
-        return redirect()->route('clients.show', ['client' => $client->id]);
+        return redirect()->route('clients.show', ['client' => $client->id])->with('message', 'Client details updated successfully.');
     }
 
     /**
