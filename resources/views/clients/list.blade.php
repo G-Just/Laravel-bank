@@ -5,7 +5,7 @@
 
     <div class="flex justify-center my-8">
         <div class="border-2 border-neutral-700 flex rounded-full bg-neutral-900 px-2 w-full max-w-[600px]">
-            <input type="text" class="w-full bg-neutral-900 flex bg-transparent pl-2 text-[#cccccc] outline-0"
+            <input type="text" class="w-full bg-neutral-900 flex bg-transparent pl-4 text-[#cccccc] outline-0"
                 placeholder="Search..." />
             <button type="submit" class="relative p-2 rounded-full bg-neutral-900">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
