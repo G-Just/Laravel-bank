@@ -47,6 +47,7 @@
         </div>
     </nav>
     <div class="absolute right-2 bg-lime-300 w-96 top-24 @if (session()->has('message')) block @else hidden @endif">
+        <a href="{{ url()->current() }}" class="absolute text-xl text-black top-2 right-4">&#10005;</a>
         <div class="p-4">
             <div class="flex items-start">
                 <div class="ml-3 w-0 flex-1 pt-0.5">
@@ -56,6 +57,7 @@
         </div>
     </div>
     <div class="absolute right-2 bg-red-600 w-96 top-24 @if (session()->has('error')) block @else hidden @endif">
+        <a href="{{ url()->current() }}" class="absolute text-xl text-black top-2 right-4">&#10005;</a>
         <div class="p-4">
             <div class="flex items-start">
                 <div class="ml-3 w-0 flex-1 pt-0.5">

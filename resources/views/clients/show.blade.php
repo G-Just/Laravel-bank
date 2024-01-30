@@ -127,7 +127,17 @@
                             </td>
                         </tr>
                     @empty
-                        No data found
+                        <tr class="bg-neutral-950">
+                            <td class="p-3 text-center">
+                                No data found
+                            </td>
+                            <td class="p-3 text-center">
+                                No data found
+                            </td>
+                            <td class="p-3 text-center">
+                                No data found
+                            </td>
+                        </tr>
                     @endforelse
                 <tbody>
             </table>
