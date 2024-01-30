@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="relative flex justify-center w-full mt-20">
-        <div class="relative w-2/5 2xl:w-1/2 xl:w-3/5 max-lg:w-full lg:mx-20 md:mx-10 max-sm:mx-2">
+        <div class="relative w-3/5 max-w-[700px] max-xl:w-5/6 lg:mx-20 md:mx-10 max-sm:mx-2 max-lg:text-lg">
             <div
                 class="relative z-10 flex flex-col items-start justify-start pt-10 pb-10 pl-10 pr-10 shadow-2xl bg-neutral-950 rounded-xl">
                 <p class="w-full text-4xl font-medium leading-snug text-center">Register a new account</p>

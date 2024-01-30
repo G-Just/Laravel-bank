@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="flex justify-center">
-        <div class="relative flex justify-center w-2/5 mt-20 2xl:w-1/2 xl:w-3/5 max-lg:w-full lg:mx-20 md:mx-10 max-sm:mx-2">
+        <div
+            class="relative flex min-w-[600px] max-w-[800px] justify-center w-2/5 mt-20 max-2xl:w-full lg:mx-20 md:mx-10 sm:mx-2">
             <div class="relative w-full">
                 <div
                     class="relative z-10 flex flex-col items-start justify-start pt-10 pb-10 pl-10 pr-10 shadow-2xl bg-neutral-950 rounded-xl">
