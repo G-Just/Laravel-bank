@@ -4,9 +4,14 @@
     {{-- search bar --}}
 
     <div class="flex justify-center my-8">
-        <div class="border-2 border-neutral-700 flex rounded-full bg-neutral-900 px-2 w-full max-w-[600px]">
-            <input type="text" class="w-full bg-neutral-900 flex bg-transparent pl-4 text-[#cccccc] outline-0"
-                placeholder="Search..." />
+        <form action={{ route('clients.list') }} method="GET"
+            class="items-center border-2 border-neutral-700 flex rounded-full bg-neutral-900 px-2 w-full max-w-[600px]">
+            @if (Request::get('search'))
+                <p class="flex gap-2 px-4 py-1 bg-black rounded-full">{{ app('request')->input('search') }}<a
+                        href="{{ route('clients.list') }}">&#10005;</a></p>
+            @endif
+            <input id='searchBar' focus name="search" type="text"
+                class="w-full bg-neutral-900 flex bg-transparent pl-4 text-[#cccccc] outline-0" placeholder="Search..." />
             <button type="submit" class="relative p-2 rounded-full bg-neutral-900">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0" />
@@ -18,10 +23,10 @@
                     </g>
                 </svg>
             </button>
-        </div>
+        </form>
     </div>
 
-    <div class="grid grid-cols-3 px-10 max-2xl:grid-cols-2 max-lg:grid-cols-1 sm:gap-x-6">
+    <div class="grid grid-cols-3 px-20 max-2xl:grid-cols-2 max-lg:grid-cols-1 sm:gap-x-6">
 
         {{-- Individual client cards --}}
         @forelse ($clients as $client)
@@ -63,15 +68,12 @@
                         <div class="flex items-center">
                             Tier:
                             @php
-                                $sum = $client
-                                    ->accounts()
-
-                                    ->sum('balance');
+                                $sum = $client->accounts()->sum('balance');
                                 echo match (true) {
-                                    $sum >= 1000000 => 'Diamond',
-                                    $sum >= 100000 => 'Platinum',
-                                    $sum >= 10000 => 'Gold',
-                                    $sum >= 500 => 'Silver',
+                                    $sum >= 1000000 => 'Diamond<img class=\'mx-2 w-4 h-4 \' src=' . asset('images/diamond.svg') . " alt='diamond'>",
+                                    $sum >= 100000 => 'Platinum<img class=\'mx-2 w-4 h-4 \' src=' . asset('images/platinum.svg') . " alt='diamond'>",
+                                    $sum >= 10000 => 'Gold<img class=\'mx-2 w-4 h-4 \' src=' . asset('images/gold.svg') . " alt='diamond'>",
+                                    $sum >= 500 => 'Silver<img class=\'mx-2 w-4 h-4 \' src=' . asset('images/silver.svg') . " alt='diamond'>",
                                     default => 'N/A',
                                 };
                             @endphp
@@ -80,7 +82,8 @@
                 </a>
             </div>
         @empty
-            <p>No data found</p>
+            <p class="mt-20 text-4xl text-center col-span-full">No data found</p>
         @endforelse
     </div>
+    <div class="flex justify-center pb-10"> {{ $clients->links() }}</div>
 @endsection

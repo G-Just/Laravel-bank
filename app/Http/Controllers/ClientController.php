@@ -22,7 +22,13 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all()->sortBy('lastName');
+        $clients = Client::paginate(9);
+        if (request()->has('search')) {
+            $clients = Client::where('firstName', 'like', '%' . request()->get('search', '') . '%')
+                ->orWhere('lastName', 'like', '%' . request()->get('search', '') . '%')
+                ->orWhere('personalCode', 'like', '%' . request()->get('search', '') . '%')
+                ->paginate(9);
+        }
         return view('clients.list', compact(['clients']));
     }
 
