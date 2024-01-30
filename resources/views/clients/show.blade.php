@@ -12,7 +12,7 @@
             <p class="text-3xl">Total Balance</p>
             <hr class="w-full border-neutral-600">
             <p class="text-6xl text-lime-300"><span class="mr-0.5">$</span>
-                {{ number_format($client->accounts()->get('balance')->sum('balance'),2) }}
+                {{ number_format($client->accounts()->sum('balance'), 2) }}
             </p>
         </div>
         <div class="grid grid-cols-2 col-span-5 gap-10 p-10 bg-neutral-950 max-xl:col-span-6">
@@ -23,7 +23,7 @@
                 </p>
                 <hr class="my-2">
                 <p class="text-lime-300">
-                    {{ $client->accounts()->get('id')->count() }}
+                    {{ $client->accounts()->count() }}
                 </p>
             </div>
             <div class="text-xl text-center">
@@ -33,7 +33,7 @@
                 </p>
                 <hr class="my-2">
                 <p class="text-lime-300">$<span class="mx-0.5">
-                        {{ number_format($client->accounts()->get('balance')->avg('balance'),2) }}
+                        {{ number_format($client->accounts()->avg('balance'), 2) }}
                     </span>
                 </p>
             </div>
@@ -44,7 +44,7 @@
                 </p>
                 <hr class="my-2">
                 <p class="text-lime-300">$<span class="mx-0.5">
-                        {{ number_format($client->accounts()->get('balance')->max('balance'),2) }}
+                        {{ number_format($client->accounts()->max('balance'), 2) }}
                     </span>
                 </p>
             </div>
@@ -55,7 +55,7 @@
                 </p>
                 <hr class="my-2">
                 <p class="text-lime-300">$<span class="mx-0.5">
-                        {{ number_format($client->accounts()->get('balance')->min('balance'),2) }}
+                        {{ number_format($client->accounts()->min('balance'), 2) }}
                     </span>
                 </p>
             </div>
