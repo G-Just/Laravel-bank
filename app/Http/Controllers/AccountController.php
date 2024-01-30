@@ -59,7 +59,7 @@ class AccountController extends Controller
 
         Account::create([...$request->all(), 'balance' => 0]);
 
-        return redirect()->route('clients')->with('message', 'Account created successfully.');
+        return redirect()->route('clients.list')->with('message', 'Account created successfully.');
     }
 
     /**

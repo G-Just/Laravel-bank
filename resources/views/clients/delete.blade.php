@@ -14,6 +14,7 @@
                         client will be <span class="text-red-600">PERMANETLY</span> deleted.</p>
                     <hr>
                     <p class="text-5xl font-bold text-center">{{ $client->firstName }} {{ $client->lastName }}</p>
+                    <p class="font-bold text-center text-neutral-700">{{ $client->personalCode }}</p>
                     </p>
                     <div class="flex items-center justify-center gap-4 text-center">
                         <button

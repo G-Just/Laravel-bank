@@ -25,15 +25,15 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Clients
-Route::prefix('/clients')->group(function () {
-    Route::get('/', [ClientController::class, 'index'])->name('clients');
-    Route::get('/create', [ClientController::class, 'create'])->name('clients.create');
-    Route::post('/', [ClientController::class, 'store'])->name('clients.store');
-    Route::get('/{client}', [ClientController::class, 'show'])->name('clients.show');
-    Route::get('/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
-    Route::put('/{client}', [ClientController::class, 'update'])->name('clients.update');
-    Route::get('/{client}/delete', [ClientController::class, 'delete'])->name('clients.delete');
-    Route::delete('/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+Route::prefix('/clients')->name('clients.')->group(function () {
+    Route::get('/', [ClientController::class, 'index'])->name('list');
+    Route::get('/create', [ClientController::class, 'create'])->name('create');
+    Route::post('/', [ClientController::class, 'store'])->name('store');
+    Route::get('/{client}', [ClientController::class, 'show'])->name('show');
+    Route::get('/{client}/edit', [ClientController::class, 'edit'])->name('edit');
+    Route::put('/{client}', [ClientController::class, 'update'])->name('update');
+    Route::get('/{client}/delete', [ClientController::class, 'delete'])->name('delete');
+    Route::delete('/{client}', [ClientController::class, 'destroy'])->name('destroy');
 });
 
 // Accounts

@@ -37,26 +37,16 @@
                                 <span class="block text-xs font-normal text-gray-500">{{ $client->personalCode }}</span>
                             </div>
                         </div>
-                        <p class="text-2xl text-lime-600"><span class="mr-0.5">$</span>
-                            @php
-                                $sum = 0;
-                                foreach ($accounts as $account) {
-                                    if ($account->client_id === $client->id) {
-                                        $sum += $account->balance;
-                                    }
-                                }
-                                echo number_format($sum, 2);
-                            @endphp
+                        <p class="text-2xl text-lime-300"><span>$</span>
+                            {{ number_format($client->accounts()->get('balance')->sum('balance'),2) }}
                         </p>
                     </div>
                     <div class="flex flex-col w-full h-32 gap-2 pr-2 mt-8 overflow-y-auto">
-                        @foreach ($accounts as $account)
-                            @if ($account->client_id === $client->id)
-                                <div class="flex justify-between border-b-2 border-neutral-700">
-                                    <p>{{ $account->IBAN }}</p>
-                                    <p><span class="mr-0.5">$</span>{{ $account->balance }}</p>
-                                </div>
-                            @endif
+                        @foreach ($client->accounts as $account)
+                            <div class="flex justify-between border-b-2 border-neutral-700">
+                                <p>{{ $account->IBAN }}</p>
+                                <p><span class="mr-0.5">$</span>{{ $account->balance }}</p>
+                            </div>
                         @endforeach
                     </div>
                     <div class="flex items-center justify-between mt-5 text-sm font-semibold ">
@@ -67,12 +57,16 @@
                                     d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
                             </svg>
                             <span class="mr-1">
-                                {{ $accounts->countBy('client_id')->get($client->id) }}
+                                {{ $client->accounts()->get('id')->count() }}
                             </span>Accounts
                         </div>
                         <div class="flex items-center">
                             Tier:
                             @php
+                                $sum = $client
+                                    ->accounts()
+                                    ->get('balance')
+                                    ->sum('balance');
                                 echo match (true) {
                                     $sum >= 1000000 => 'Diamond',
                                     $sum >= 100000 => 'Platinum',

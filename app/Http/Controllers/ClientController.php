@@ -23,8 +23,7 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all()->sortBy('lastName');
-        $accounts = Account::all();
-        return view('clients.list', compact(['clients', 'accounts']));
+        return view('clients.list', compact(['clients']));
     }
 
     /**
@@ -72,7 +71,7 @@ class ClientController extends Controller
 
         Client::create($request->all());
 
-        return redirect()->route('clients')->with('message', 'Client created successfully.');
+        return redirect()->route('clients.list')->with('message', 'Client created successfully.');
     }
 
     /**
@@ -80,8 +79,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        $accounts = Account::all()->where('client_id', $client->id);
-        return view('clients.show', compact(['client', 'accounts']));
+        return view('clients.show', compact(['client']));
     }
 
     /**
@@ -127,6 +125,6 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect()->route('clients')->with('message', 'Client data deleted.');
+        return redirect()->route('clients.list')->with('message', 'Client data deleted.');
     }
 }
