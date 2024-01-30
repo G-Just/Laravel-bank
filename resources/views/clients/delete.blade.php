@@ -9,8 +9,10 @@
                 <form action="{{ route('clients.destroy', $client) }}" method="POST"
                     class="relative w-full px-32 mt-6 mb-0 ml-0 mr-0 space-y-8">
                     @method('delete')
-                    <p class="text-2xl text-center">Are you sure you want to delete client
-                        <hr>
+                    <p class="text-2xl text-center">Are you sure you want to delete client ?
+                    <p class="text-center"><span class="text-red-600">IMPORTANT</span>: all accounts associated with the
+                        client will be <span class="text-red-600">PERMANETLY</span> deleted.</p>
+                    <hr>
                     <p class="text-5xl font-bold text-center">{{ $client->firstName }} {{ $client->lastName }}</p>
                     </p>
                     <div class="flex items-center justify-center gap-4 text-center">

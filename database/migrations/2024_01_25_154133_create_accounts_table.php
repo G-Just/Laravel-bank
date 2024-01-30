@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('IBAN', 64);
             $table->decimal('balance', $precision = 15, $scale = 2);
             $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }

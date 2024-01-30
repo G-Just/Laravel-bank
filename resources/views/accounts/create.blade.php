@@ -17,10 +17,12 @@
                             class="w-full pt-4 pb-4 pl-4 pr-4 mt-2 mb-0 ml-0 mr-0 text-base border rounded-md border-neutral-600 placeholder-neutral-700 focus:outline-none focus:border-neutral-500 bg-neutral-950"
                             name="client_id" required>
                             <option class="hidden" value="" disabled selected>Select a client ...</option>
-                            @foreach ($clients as $client)
+                            @forelse ($clients as $client)
                                 <option value="{{ $client->id }}">{{ $client->firstName }} {{ $client->lastName }}
                                     | {{ $client->personalCode }}</option>
-                            @endforeach
+                            @empty
+                                <option disabled value="">No clients found</option>
+                            @endforelse
                         </select>
                     </div>
                     <div class="relative">
