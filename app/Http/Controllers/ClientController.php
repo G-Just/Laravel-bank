@@ -10,6 +10,14 @@ use App\Models\Account;
 class ClientController extends Controller
 {
     /**
+     * Check if access authorized.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -96,7 +104,7 @@ class ClientController extends Controller
 
         $client->update($request->all());
 
-        return redirect()->route('clients.show', compact(['client']))->with('message', 'Client details updated successfully.');
+        return redirect()->route('clients.show', $client)->with('message', 'Client details updated successfully.');
     }
 
     /**
@@ -104,7 +112,13 @@ class ClientController extends Controller
      */
     public function delete(Client $client)
     {
-        return view('clients.delete', compact(['client']));
+        $totalBalance = Account::all()->where('client_id', $client->id)->pluck('balance')->sum();
+        if ($totalBalance == 0) {
+            return view('clients.delete', compact(['client']));
+        } else {
+            session()->flash('error', 'Cannot delete clients with non-zero total balance');
+            return redirect()->route('clients.show', $client);
+        }
     }
 
     /**
@@ -112,7 +126,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //TODO: check if the total account balance is 0, if not redirect back with message.
-        // Else just delete and return to listing with a message.
+        $client->delete();
+        return redirect()->route('clients')->with('message', 'Client data deleted.');
     }
 }

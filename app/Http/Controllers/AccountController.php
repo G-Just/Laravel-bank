@@ -10,6 +10,14 @@ use App\Models\Client;
 class AccountController extends Controller
 {
     /**
+     * Check if access authorized.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -26,8 +34,8 @@ class AccountController extends Controller
         foreach (Account::all('IBAN') as $account) {
             $accounts[] = $account->IBAN;
         }
-        $number = $accounts[0];
-        while (in_array($number, $accounts)) { // Ensures that generated IBAN is unique
+        $number = $accounts[0] ?? '';
+        while (in_array($number, $accounts) || $number === '') { // Ensures that generated IBAN is unique
             $number = '';
             foreach (range(1, 11) as $digit) {
                 $number = $number . (string)rand(0, 9);
