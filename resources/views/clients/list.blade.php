@@ -3,7 +3,7 @@
 @section('content')
     {{-- search bar --}}
 
-    <div class="flex justify-center my-8">
+    <div class="flex justify-center my-8 max-md:mx-4">
         <form action={{ route('clients.list') }} method="GET"
             class="items-center border-2 border-neutral-700 flex rounded-full bg-neutral-900 px-2 w-full max-w-[600px]">
             @if (Request::get('search'))
@@ -26,12 +26,12 @@
         </form>
     </div>
 
-    <div class="grid grid-cols-3 px-20 max-2xl:grid-cols-2 max-lg:grid-cols-1 sm:gap-x-6">
+    <div class="grid grid-cols-3 px-20 max-2xl:grid-cols-2 max-lg:grid-cols-1 sm:gap-x-6 max-md:px-2">
 
         {{-- Individual client cards --}}
         @forelse ($clients as $client)
             <div
-                class="p-6 mb-6 border-2 rounded-lg hover:bg-neutral-900 hover:border-lime-600 h-72 bg-neutral-950 border-neutral-800">
+                class="p-6 mb-6 border-2 rounded-lg max-md:p-2 hover:bg-neutral-900 hover:border-lime-600 h-72 bg-neutral-950 border-neutral-800">
                 <a href="{{ route('clients.show', ['client' => $client->id]) }}">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">

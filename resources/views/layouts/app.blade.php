@@ -7,7 +7,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>Laravel Bank</title>
 
     <!-- Scripts -->
@@ -17,11 +16,12 @@
 <body
     class="h-screen w-screen text-white relative bg-[url('../../public/images/main_background.jpg')] bg-cover bg-no-repeat bg-fixed overflow-x-hidden">
     <nav class="flex justify-between w-full px-16 py-6 max-lg:px-4">
-        <div class="flex justify-start w-2/12">
+        <div class="z-30 flex justify-start w-2/12">
             <a href="{{ route('home') }}"><img class="w-10 h-w-10" src="{{ asset('images/laravel_icon.svg') }}"
                     alt="Logo"></a>
         </div>
-        <div class="flex justify-center gap-20 mt-2 text-nowrap max-xl:gap-10 max-lg:text-xs">
+        <div id='nav_dropdown'
+            class="absolute top-0 z-20 flex-col hidden w-full gap-4 pt-24 pb-5 text-center transform -translate-x-1/2 left-1/2 bg-neutral-950">
             <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
                 href="{{ route('clients.list') }}">Client
                 List</a>
@@ -34,7 +34,20 @@
                 href="{{-- {{ route('accounts.transfer') }} --}}">Transfer
                 funds</a>
         </div>
-        <div class="flex items-center justify-end w-2/12 mt-2">
+        <div class="flex justify-center gap-20 mt-2 max-lg:hidden text-nowrap">
+            <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
+                href="{{ route('clients.list') }}">Client
+                List</a>
+            <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
+                href="{{ route('clients.create') }}">New Client</a>
+            <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
+                href="{{ route('accounts.create') }}">New
+                Account</a>
+            <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
+                href="{{-- {{ route('accounts.transfer') }} --}}">Transfer
+                funds</a>
+        </div>
+        <div class="z-30 flex items-center justify-end w-2/12 mt-2 max-lg:w-1/2">
             <a class="flex gap-2" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -44,6 +57,18 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
+            <button
+                onclick="
+            const dropdown = document.getElementById('nav_dropdown');
+            if (dropdown.classList.contains('hidden')){
+                dropdown.classList.add('flex')
+                dropdown.classList.remove('hidden')
+            } else {
+                dropdown.classList.remove('flex')
+                dropdown.classList.add('hidden')
+            }"
+                class="z-20 px-10 lg:hidden"><img class="w-10 h-10" src="{{ asset('images/hamburger.svg') }}"
+                    alt=""></button>
         </div>
     </nav>
     <div class="absolute right-2 bg-lime-300 w-96 top-24 @if (session()->has('message')) block @else hidden @endif">
