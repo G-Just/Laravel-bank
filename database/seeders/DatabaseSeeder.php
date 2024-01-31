@@ -39,5 +39,10 @@ class DatabaseSeeder extends Seeder
             'email' => '98f87fd651@gmail.com',
             'password' => '$2y$12$ut5GSluYsR3gSLYhDYhX2.lj.vubcj/RzVrXg5QPVbzDbAF3GI5Km'
         ]);
+        DB::table('users')->insert([
+            'name' => 'Public',
+            'email' => 'public@gmail.com',
+            'password' => Hash::make('public')
+        ]);
     }
 }
