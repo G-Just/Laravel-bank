@@ -75,7 +75,7 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        return view('accounts.edit');
+        return view('accounts.edit', compact('account'));
     }
 
     /**
@@ -83,7 +83,13 @@ class AccountController extends Controller
      */
     public function update(UpdateAccountRequest $request, Account $account)
     {
-        //
+        $request->validate([
+            'IBAN' => 'required|string|size:19|unique:accounts',
+        ]);
+
+        $account->update($request->all());
+
+        return redirect()->route('clients.show', $account->client_id)->with('message', 'Account details updated successfully.');
     }
 
     /**
