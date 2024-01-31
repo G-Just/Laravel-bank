@@ -120,8 +120,7 @@ class ClientController extends Controller
         if ($totalBalance == 0) {
             return view('clients.delete', compact(['client']));
         } else {
-            session()->flash('error', 'Cannot delete clients with non-zero total balance');
-            return redirect()->route('clients.show', $client);
+            return redirect()->route('clients.show', $client)->with('error', 'Cannot delete clients with non-zero total balance');
         }
     }
 
