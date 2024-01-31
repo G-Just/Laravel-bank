@@ -71,12 +71,36 @@ class AccountController extends Controller
     }
 
     /**
+     * Show the form for depositing money into the specified resource.
+     */
+    public function deposit(Account $account)
+    {
+        return view('accounts.deposit', compact('account'));
+    }
+
+    /**
+     * Show the form for withdrawing money from the specified resource.
+     */
+    public function withdraw(Client $client)
+    {
+        return view('accounts.withdraw', compact('client'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Account $account)
     {
         return view('accounts.edit', compact('account'));
     }
+
+    public function operation(UpdateAccountRequest $request)
+    {
+        // TODO: here we get account ID with the request and go from there.
+        // Need to determine if the operation is deposit or withdraw and 
+        // complete the operation with validation etc.
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -90,6 +114,14 @@ class AccountController extends Controller
         $account->update($request->all());
 
         return redirect()->route('clients.show', $account->client_id)->with('message', 'Account details updated successfully.');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function delete(Client $client)
+    {
+        return view('accounts.delete', compact('client'));
     }
 
     /**

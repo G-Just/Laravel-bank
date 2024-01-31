@@ -39,10 +39,10 @@ Route::prefix('/clients')->name('clients.')->group(function () {
 
 // Accounts
 Route::prefix('/accounts')->name('accounts.')->group(function () {
-    Route::get('/', [AccountController::class, 'index'])->name('list');
     Route::get('/create', [AccountController::class, 'create'])->name('create');
     Route::post('/', [AccountController::class, 'store'])->name('store');
-    Route::get('/{account}', [AccountController::class, 'show'])->name('show');
+    Route::get('/{account}/deposit', [AccountController::class, 'deposit'])->name('deposit');
+    Route::get('/{account}/withdraw', [AccountController::class, 'withdraw'])->name('withdraw');
     Route::get('/{account}/edit', [AccountController::class, 'edit'])->name('edit');
     Route::put('/{account}', [AccountController::class, 'update'])->name('update');
     Route::get('/{account}/delete', [AccountController::class, 'delete'])->name('delete');

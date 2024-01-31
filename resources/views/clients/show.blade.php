@@ -81,21 +81,21 @@
                 </div>
             </a>
         </div>
-        <div
+        <a href="{{ route('accounts.deposit', $client) }}"
             class="flex flex-col items-center justify-center h-40 col-span-3 gap-5 font-bold bg-neutral-950 max-xl:col-span-4">
             <img class="w-14 h-14" src="{{ asset('images/deposit.svg') }}" alt="Deposit">
             Deposit
-        </div>
-        <div
+        </a>
+        <a href="{{ route('accounts.withdraw', $client) }}"
             class="flex flex-col items-center justify-center h-40 col-span-3 gap-5 font-bold bg-neutral-950 max-xl:col-span-4">
             <img class="w-14 h-14" src="{{ asset('images/withdraw.svg') }}" alt="Withdraw">
             Withdraw
-        </div>
-        <div
+        </a>
+        <a href="{{ route('accounts.delete', $client) }}"
             class="flex flex-col items-center justify-center h-40 col-span-3 gap-5 font-bold bg-neutral-950 max-xl:col-span-4">
             <img class="w-14 h-14" src="{{ asset('images/delete.svg') }}" alt="Delete">
             Delete
-        </div>
+        </a>
         <div class="w-full col-span-9 max-xl:col-span-12">
             <table class="w-full text-white border-separate">
                 <thead class="text-black bg-lime-400">
