@@ -3,24 +3,24 @@
         <div class="flex justify-between flex-1 sm:hidden">
             @if ($paginator->onFirstPage())
                 <span
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 border border-gray-600 rounded-md cursor-default text-lime-300 bg-neutral-950">
+                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-gray-700 border border-gray-600 rounded-md cursor-default bg-neutral-950">
                     {!! __('pagination.previous') !!}
                 </span>
             @else
                 <a href="{{ $paginator->previousPageUrl() }}"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out border border-gray-600 rounded-md bg-neutral-950 hover:text-lime-300 focus:outline-none focus:ring ring-opacity-40 ring-lime-300 focus:border-gray-600 active:bg-lime-300 active:text-gray-700 ">
+                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out border border-gray-600 rounded-md bg-neutral-950 hover:text-lime-300 focus:outline-none focus:ring ring-opacity-40 ring-lime-300 focus:border-gray-600 active:bg-lime-300 active:text-gray-700 ">
                     {!! __('pagination.previous') !!}
                 </a>
             @endif
 
             @if ($paginator->hasMorePages())
                 <a href="{{ $paginator->nextPageUrl() }}"
-                    class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out border border-gray-600 rounded-md bg-neutral-950 hover:text-lime-300 focus:outline-none focus:ring ring-opacity-40 ring-lime-300 focus:border-gray-600 active:bg-lime-300 active:text-gray-700 ">
+                    class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out border border-gray-600 rounded-md bg-neutral-950 hover:text-lime-300 focus:outline-none focus:ring ring-opacity-40 ring-lime-300 focus:border-gray-600 active:bg-lime-300 active:text-gray-700 ">
                     {!! __('pagination.next') !!}
                 </a>
             @else
                 <span
-                    class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium leading-5 border border-gray-600 rounded-md cursor-default text-lime-300 bg-neutral-950">
+                    class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium leading-5 text-gray-700 border border-gray-600 rounded-md cursor-default bg-neutral-950">
                     {!! __('pagination.next') !!}
                 </span>
             @endif

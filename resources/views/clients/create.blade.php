@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex justify-center">
-        <div class="relative flex max-w-[800px] justify-center w-2/5 mt-20 max-2xl:w-full lg:mx-20 max-md:mx-5">
+    <div class="flex justify-center overflow-hidden">
+        <div class="relative flex max-w-[800px] max-lg:mt-5  justify-center w-2/5 mt-20 max-2xl:w-full lg:mx-20 max-md:mx-5">
             <div class="relative w-full">
                 <div
                     class="relative z-10 flex flex-col items-start justify-start pt-10 pb-10 pl-10 pr-10 shadow-2xl bg-neutral-950 rounded-xl">
-                    <p class="w-full text-4xl font-medium leading-snug text-center">Register a new client</p>
+                    <p class="w-full text-4xl font-medium leading-snug text-center max-lg:text-2xl">Register a new client</p>
                     <form action="{{ route('clients.store') }}" method="POST"
                         class="relative w-full mt-6 mb-0 ml-0 mr-0 space-y-8">
                         <div class="relative">

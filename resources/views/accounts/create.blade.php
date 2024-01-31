@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="relative flex justify-center w-full mt-20">
+    <div class="relative flex justify-center w-full mt-20 overflow-hidden">
         <div class="relative w-3/5 max-w-[700px] max-xl:w-5/6 lg:mx-20 md:mx-10 max-sm:mx-2 max-lg:text-lg">
             <div
                 class="relative z-10 flex flex-col items-start justify-start pt-10 pb-10 pl-10 pr-10 shadow-2xl bg-neutral-950 rounded-xl">
-                <p class="w-full text-4xl font-medium leading-snug text-center">Register a new account</p>
+                <p class="w-full text-4xl font-medium leading-snug text-center max-lg:text-2xl">Register a new account</p>
                 <form action="{{ route('accounts.store') }}" method="POST"
                     class="relative w-full mt-6 mb-0 ml-0 mr-0 space-y-8">
                     <div class="relative flex justify-center ">
-                        <h1 class="text-3xl text-lime-300">{{ $IBAN }}</h1>
+                        <h1 class="text-3xl text-lime-300 max-lg:text-xl">{{ $IBAN }}</h1>
                     </div>
                     <input type="hidden" name="IBAN" value={{ $IBAN }}>
                     <div class="relative flex justify-center ">
