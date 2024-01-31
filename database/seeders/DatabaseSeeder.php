@@ -17,8 +17,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
+        $users = 50;
 
-        foreach (range(1, 20) as $client) {
+        foreach (range(1, $users) as $client) {
             DB::table('clients')->insert([
                 'firstName' => $faker->firstName(),
                 'lastName' => $faker->lastName(),
@@ -26,11 +27,11 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (range(1, 100) as $accounts) {
+        foreach (range(1, 150) as $accounts) {
             DB::table('accounts')->insert([
                 'IBAN' => $faker->regexify('LT0099999[0-9]{10}'),
-                'balance' => $faker->numberBetween(0, 500000),
-                'client_id' => $faker->numberBetween(1, 20)
+                'balance' => $faker->numberBetween(0, 10000),
+                'client_id' => $faker->numberBetween(1, $users)
             ]);
         }
 
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
             'email' => '98f87fd651@gmail.com',
             'password' => '$2y$12$ut5GSluYsR3gSLYhDYhX2.lj.vubcj/RzVrXg5QPVbzDbAF3GI5Km'
         ]);
+
         DB::table('users')->insert([
             'name' => 'Public',
             'email' => 'public@gmail.com',
