@@ -67,7 +67,7 @@
                 dropdown.classList.remove('flex')
                 dropdown.classList.add('hidden')
             }"
-                class="z-20 px-10 lg:hidden"><img class="w-10 h-10" src="{{ asset('images/hamburger.svg') }}"
+                class="z-20 pl-10 lg:hidden"><img class="w-10 h-10" src="{{ asset('images/hamburger.svg') }}"
                     alt=""></button>
         </div>
     </nav>

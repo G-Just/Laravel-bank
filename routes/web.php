@@ -41,10 +41,11 @@ Route::prefix('/clients')->name('clients.')->group(function () {
 Route::prefix('/accounts')->name('accounts.')->group(function () {
     Route::get('/create', [AccountController::class, 'create'])->name('create');
     Route::post('/', [AccountController::class, 'store'])->name('store');
-    Route::get('/{account}/deposit', [AccountController::class, 'deposit'])->name('deposit');
-    Route::get('/{account}/withdraw', [AccountController::class, 'withdraw'])->name('withdraw');
+    Route::get('/{client}/deposit', [AccountController::class, 'deposit'])->name('deposit');
+    Route::get('/{client}/withdraw', [AccountController::class, 'withdraw'])->name('withdraw');
+    Route::get('/operation', [AccountController::class, 'operation'])->name('operation');
     Route::get('/{account}/edit', [AccountController::class, 'edit'])->name('edit');
     Route::put('/{account}', [AccountController::class, 'update'])->name('update');
-    Route::get('/{account}/delete', [AccountController::class, 'delete'])->name('delete');
+    Route::get('/{client}/delete', [AccountController::class, 'delete'])->name('delete');
     Route::delete('/{account}', [AccountController::class, 'destroy'])->name('destroy');
 });

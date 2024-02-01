@@ -1,4 +1,8 @@
 @extends('layouts.operation')
 
-@section('opperation')
+@section('form')
+@endsection
+
+@section('title')
+    Delete
 @endsection

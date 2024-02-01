@@ -73,9 +73,9 @@ class AccountController extends Controller
     /**
      * Show the form for depositing money into the specified resource.
      */
-    public function deposit(Account $account)
+    public function deposit(Client $client)
     {
-        return view('accounts.deposit', compact('account'));
+        return view('accounts.deposit', compact('client'));
     }
 
     /**
@@ -86,13 +86,6 @@ class AccountController extends Controller
         return view('accounts.withdraw', compact('client'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Account $account)
-    {
-        return view('accounts.edit', compact('account'));
-    }
 
     public function operation(UpdateAccountRequest $request)
     {
@@ -101,6 +94,13 @@ class AccountController extends Controller
         // complete the operation with validation etc.
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Account $account)
+    {
+        return view('accounts.edit', compact('account'));
+    }
 
     /**
      * Update the specified resource in storage.

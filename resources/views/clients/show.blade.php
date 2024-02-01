@@ -64,7 +64,7 @@
         </div>
         <div
             class="flex flex-col items-center col-span-3 row-span-2 gap-6 p-10 max-md:col-span-12 bg-neutral-950 max-xl:col-span-6 max-xl:flex-row max-xl:row-span-1">
-            <a href="{{ route('clients.edit', ['client' => $client->id]) }}" class="w-full">
+            <a href="{{ route('clients.edit', $client) }}" class="w-full">
                 <div class="w-full p-6 text-xl text-center border-2 hover:border-lime-300 border-neutral-600">
                     <p>
                         <span class="max-xl:hidden">Edit client details</span>
