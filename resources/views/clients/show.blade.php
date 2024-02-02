@@ -73,7 +73,8 @@
                 </div>
             </a>
             <a href="{{ route('clients.delete', $client) }}" class="w-full">
-                <div class="w-full p-6 text-xl text-center border-2 border-red-600 hover:bg-red-600 hover:text-white">
+                <div
+                    class="w-full p-6 text-xl text-center border-2 border-neutral-600 hover:border-red-600 hover:bg-red-600 hover:text-white">
                     <p>
                         <span class="max-xl:hidden">Delete client</span>
                         <span class="max-xl:block xl:hidden">Delete</span>
@@ -101,7 +102,7 @@
                 <thead class="text-black bg-lime-400">
                     <tr>
                         <th class="p-3 max-md:px-1">Action</th>
-                        <th class="p-3 max-md:px-1">Account Number (IBAN)</th>
+                        <th class="p-3 max-md:px-1"><span class="max-md:hidden">Account Number </span>IBAN</th>
                         <th class="p-3 text-center max-md:px-1">Balance</th>
                     </tr>
                 </thead>
@@ -132,13 +133,13 @@
                     @empty
                         <tr class="bg-neutral-950">
                             <td class="p-3 text-center">
-                                No data found
+                                No data
                             </td>
                             <td class="p-3 text-center">
-                                No data found
+                                No data
                             </td>
                             <td class="p-3 text-center">
-                                No data found
+                                No data
                             </td>
                         </tr>
                     @endforelse

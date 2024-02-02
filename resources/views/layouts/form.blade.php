@@ -2,42 +2,16 @@
 
 
 @section('content')
-    <div class="relative flex justify-center w-full mt-20 overflow-hidden max-lg:mt-5">
-        <div class="relative w-2/5 2xl:w-1/2 xl:w-3/5 max-lg:w-full lg:mx-20 md:mx-10 max-sm:mx-2">
-            <a class="absolute z-20 left-4 top-4" href="{{ route('clients.show', $client) }}"><img class="w-14 h-14"
-                    src="{{ asset('images/back.svg') }}" alt="back"></a>
-            <div
-                class="relative z-10 flex flex-col items-start justify-start pt-10 pb-10 pl-10 pr-10 shadow-2xl bg-neutral-950 rounded-xl">
-                <p class="w-full text-4xl font-medium leading-snug text-center">@yield('title')</p>
-                <form action="{{ route('accounts.operation') }}" method="POST"
-                    class="relative w-full mt-6 mb-0 ml-0 mr-0 space-y-8">
-                    <div class="relative flex flex-col justify-center gap-8">
-                        <div class="relative flex justify-center ">
-                            <select
-                                class="w-full pt-4 pb-4 pl-4 pr-4 mt-2 mb-0 ml-0 mr-0 text-base border rounded-md border-neutral-600 placeholder-neutral-700 focus:outline-none focus:border-neutral-500 bg-neutral-950"
-                                name="client_id" required>
-                                <option class="hidden" value="" disabled selected>Select an account ...</option>
-                                @forelse ($client->accounts as $account)
-                                    <option value="{{ $account->id }}">{{ $account->IBAN }} | $
-                                        {{ number_format($account->balance, 2) }}
-                                    </option>
-                                @empty
-                                    <option disabled value="">No accounts found</option>
-                                @endforelse
-                            </select>
-                        </div>
-                    </div>
-                    @yield('form')
-                    <div class="relative">
-                        <button
-                            class="px-8 py-4 mt-8 font-bold text-black hover:bg-lime-500 bg-gradient-to-tr bg-lime-400 rounded-xl"
-                            type="submit">@yield('title')</button>
-                    </div>
-                    @csrf
-                </form>
+    <div class="relative flex justify-center w-full mt-20 max-lg:mt-5">
+        <div class="z-0 relative w-full sm:w-4/5 lg:w-3/5 2xl:w-2/5 max-w-[700px]">
+            <a class="absolute z-10 left-4 top-4" href="{{ url()->previous() }}">
+                <img class="w-14 h-14" src="{{ asset('images/back.svg') }}" alt="back"></a>
+            <div class="relative flex flex-col items-start justify-start p-10 shadow-2xl bg-neutral-950 rounded-xl">
+                <p class="w-full mb-2 text-4xl font-normal leading-snug text-center max-md:text-2xl">@yield('title')</p>
+                @yield('form')
             </div>
             <svg viewbox="0 0 91 91"
-                class="absolute top-0 z-0 w-32 h-32 -mt-12 -ml-12 fill-current -right-12 text-lime-300">
+                class="absolute right-0 w-32 h-32 -mb-12 -mr-12 fill-current -z-10 max-md:hidden -top-12 text-lime-300">
                 <g stroke="none" strokewidth="1" fillrule="evenodd">
                     <g fillrule="nonzero">
                         <g>
@@ -126,7 +100,7 @@
                 </g>
             </svg>
             <svg viewbox="0 0 91 91"
-                class="absolute bottom-0 z-0 w-32 h-32 -mb-12 -mr-12 fill-current -left-12 text-lime-300">
+                class="absolute left-0 w-32 h-32 -mt-12 -ml-12 fill-current -z-10 max-md:hidden -bottom-12 text-lime-300">
                 <g stroke="none" strokewidth="1" fillrule="evenodd">
                     <g fillrule="nonzero">
                         <g>

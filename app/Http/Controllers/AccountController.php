@@ -89,6 +89,7 @@ class AccountController extends Controller
 
     public function operation(UpdateAccountRequest $request)
     {
+        dd($request);
         // TODO: here we get account ID with the request and go from there.
         // Need to determine if the operation is deposit or withdraw and 
         // complete the operation with validation etc.
