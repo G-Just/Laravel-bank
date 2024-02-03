@@ -9,7 +9,7 @@
         <div class="relative flex justify-center ">
             <select
                 class="w-full pt-4 pb-4 pl-4 pr-4 mt-2 mb-0 ml-0 mr-0 text-base border rounded-md border-neutral-600 placeholder-neutral-700 focus:outline-none focus:border-neutral-500 bg-neutral-950"
-                name="client_id" required>
+                name="id" required>
                 <option class="hidden" value="" disabled selected>Select an account ...</option>
                 @forelse ($client->accounts as $account)
                     <option value="{{ $account->id }}">{{ $account->IBAN }}

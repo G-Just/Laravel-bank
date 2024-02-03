@@ -89,10 +89,32 @@ class AccountController extends Controller
 
     public function operation(UpdateAccountRequest $request)
     {
-        dd($request);
-        // TODO: here we get account ID with the request and go from there.
-        // Need to determine if the operation is deposit or withdraw and 
-        // complete the operation with validation etc.
+        // dd($request);
+        $request->validate([
+            'id' => 'required|string|numeric',
+            'amount' => 'required|string|numeric',
+            'type' => 'required|string'
+        ]);
+
+        $account = Account::find($request->id);
+        $client = Client::find($account->client_id);
+
+        if ($request->type === 'deposit') {
+            $account->balance += $request->amount;
+            $operation = 'deposited';
+        }
+        if ($request->type === 'withdraw') {
+            if ($account->balance >= $request->amount) {
+                $account->balance -= $request->amount;
+            } else {
+                return redirect()->route('accounts.withdraw', compact(['client']))->with('error', "Cannot withdraw more than available balance");
+            }
+            $operation = 'withdrawn';
+        }
+
+        $account->save();
+
+        return redirect()->route('clients.show', compact(['client']))->with('message', "Money " . $operation . " successfully.");
     }
 
     /**
@@ -109,14 +131,13 @@ class AccountController extends Controller
     public function update(UpdateAccountRequest $request, Account $account)
     {
         $request->validate([
-            'IBAN' => 'required|string|size:19|unique:accounts',
+            'IBAN' => 'required|string|size:20|unique:accounts',
         ]);
 
         $account->update($request->all());
 
         return redirect()->route('clients.show', $account->client_id)->with('message', 'Account details updated successfully.');
     }
-
     /**
      * Show the form for editing the specified resource.
      */
