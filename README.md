@@ -35,7 +35,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 -   ![Screenshot](https://i.imgur.com/uqGgbuA.png)
 
-2.  Assuming you've already installed:
+2.  Assuming you've already installed / have knowledge of:
 
 -   [PHP](https://www.php.net/)
 -   [Laravel](https://laravel.com/)
