@@ -89,7 +89,6 @@ class AccountController extends Controller
 
     public function operation(UpdateAccountRequest $request)
     {
-        // dd($request);
         $request->validate([
             'id' => 'required|string|numeric',
             'amount' => 'required|string|numeric',
@@ -149,8 +148,12 @@ class AccountController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Account $account)
+    public function destroy(UpdateAccountRequest $request)
     {
-        //
+        $account = Account::find($request->id);
+        $client = $account->client_id;
+        $account->delete();
+
+        return redirect()->route('clients.show', $client)->with('message', 'Account deleted successfully.');
     }
 }
