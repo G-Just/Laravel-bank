@@ -5,7 +5,7 @@
         class="relative w-full mt-6 mb-0 ml-0 mr-0 space-y-5">
         @method('delete')
         <p class="text-2xl text-center">Make you sure to select the correct account
-        <p class="pb-4 text-sm text-center">Accounts with non-zero balance cannot be deleted
+        <p class="pb-4 text-sm text-center">Accounts with non-zero balance cannot be deleted and will be un-selectable
         <p class="text-center"><span class="text-red-600">IMPORTANT</span>: selected account will be deleted <span
                 class="text-red-600">PERMANETLY</span>.</p>
         <hr>

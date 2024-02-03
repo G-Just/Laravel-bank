@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
 
         foreach (range(1, 150) as $accounts) {
             DB::table('accounts')->insert([
-                'IBAN' => $faker->regexify('LT0099999[0-9]{10}'),
+                'IBAN' => $faker->regexify('LT0099999[0-9]{11}'),
                 'balance' => $faker->numberBetween(0, 10000),
                 'client_id' => $faker->numberBetween(1, $users)
             ]);
