@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $accounts = Account::all();
+        $clients = Client::all();
+        $emptyClients = $clients->count() - Client::whereHas('accounts')->count();
+        return view('home', compact(['accounts', 'clients', 'emptyClients']));
     }
 }
