@@ -65,9 +65,12 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Account $account)
+    public function transfer()
     {
-        //
+        $accounts = Account::all();
+        $clients = Client::all();
+
+        return view('accounts.transfer', compact('accounts', 'clients'));
     }
 
     /**

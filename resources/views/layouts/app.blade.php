@@ -43,7 +43,7 @@
                 href="{{ route('accounts.create') }}">New
                 Account</a>
             <a class="text-xl hover:underline hover:text-lime-400 underline-offset-8"
-                href="{{-- {{ route('accounts.transfer') }} --}}">Transfer
+                href="{{ route('accounts.transfer') }}">Transfer
                 funds</a>
         </div>
         <div class="z-30 flex items-center justify-end w-2/12 mt-2 max-lg:w-1/2">

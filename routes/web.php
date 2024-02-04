@@ -40,6 +40,7 @@ Route::prefix('/clients')->name('clients.')->group(function () {
 // Accounts
 Route::prefix('/accounts')->name('accounts.')->group(function () {
     Route::get('/create', [AccountController::class, 'create'])->name('create');
+    Route::get('/transfer', [AccountController::class, 'transfer'])->name('transfer');
     Route::post('/', [AccountController::class, 'store'])->name('store');
     Route::get('/{client}/deposit', [AccountController::class, 'deposit'])->name('deposit');
     Route::get('/{client}/withdraw', [AccountController::class, 'withdraw'])->name('withdraw');
