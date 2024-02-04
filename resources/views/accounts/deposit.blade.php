@@ -21,23 +21,25 @@
         </div>
 
         {{-- Presets --}}
-        <div class="flex justify-center gap-4 pt-10">
+        <div class="flex justify-center gap-3 pt-10 lg:gap-4">
             <button
                 onclick="event.preventDefault();const inp = document.getElementById('amount');
             inp.value = +inp.value + 1"
-                class="px-3 py-1 text-lg rounded-lg hover:bg-neutral-700 bg-neutral-800">$ 1.00</button>
+                class="px-2 py-1 text-sm rounded-lg lg:text-lg lg:px-3 hover:bg-neutral-700 bg-neutral-800">$ 1.00</button>
             <button
                 onclick="event.preventDefault();const inp = document.getElementById('amount');
             inp.value = +inp.value + 10"
-                class="px-3 py-1 text-lg rounded-lg hover:bg-neutral-700 bg-neutral-800">$ 10.00</button>
+                class="px-3 py-2 text-sm rounded-lg lg:text-lg hover:bg-neutral-700 bg-neutral-800">$ 10.00</button>
             <button
                 onclick="event.preventDefault();const inp = document.getElementById('amount');
             inp.value = +inp.value + 100"
-                class="px-3 py-1 text-lg rounded-lg hover:bg-neutral-700 bg-neutral-800">$ 100.00</button>
+                class="px-2 py-1 text-sm rounded-lg lg:text-lg lg:px-3 hover:bg-neutral-700 bg-neutral-800">$
+                100.00</button>
             <button
                 onclick="event.preventDefault();const inp = document.getElementById('amount');
             inp.value = +inp.value + 1000"
-                class="px-3 py-1 text-lg rounded-lg hover:bg-neutral-700 bg-neutral-800">$ 1000.00</button>
+                class="px-2 py-1 text-sm rounded-lg lg:text-lg lg:px-3 hover:bg-neutral-700 bg-neutral-800">$
+                1000.00</button>
         </div>
 
         {{-- Amount --}}
