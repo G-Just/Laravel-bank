@@ -30,11 +30,6 @@
                             name="negative" id="negative">
                         <label for="negative">Hide clients with negative or zero balance</label>
                     </div>
-                    <div>
-                        <input class="accent-lime-300"@if (request()->has('empty')) checked @endif type="checkbox"
-                            name="empty" id="empty">
-                        <label for="empty">Hide clients without accounts</label>
-                    </div>
             </div>
         </div>
         <div class="items-center border-2 border-neutral-700 flex rounded-full bg-neutral-900 px-2 w-full max-w-[600px]">
@@ -42,7 +37,7 @@
                 <p class="flex gap-2 px-4 py-1 bg-black rounded-full">{{ app('request')->input('search') }}<a
                         href="{{ route('clients.list') }}">&#10005;</a></p>
             @endif
-            <input id='searchBar' focus name="search" type="text"
+            <input value="{{ app('request')->input('search') }}" id='searchBar' focus name="search" type="text"
                 class="w-full bg-neutral-900 flex bg-transparent pl-4 text-[#cccccc] outline-0" placeholder="Search..." />
             <button type="submit" class="relative p-2 rounded-full bg-neutral-900">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -117,5 +112,5 @@
             <p class="mt-20 text-4xl text-center col-span-full">No data found</p>
         @endforelse
     </div>
-    {{-- <div class="flex justify-center pb-10"> {{ $clients->links() }}</div> --}}
+    <div class="flex justify-center pb-10"> {{ $clients->links() }}</div>
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Account;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -24,35 +25,23 @@ class ClientController extends Controller
     {
         $request = request();
         $clients = Client::query();
+
         if ($request->has('search')) {
             $clients->where('firstName', 'like', '%' . $request->get('search', '') . '%')
                 ->orWhere('lastName', 'like', '%' . $request->get('search', '') . '%')
                 ->orWhere('personalCode', 'like', '%' . $request->get('search', '') . '%');
         }
-        $clients = $clients->withSum('accounts', 'balance')->get();
+        $clients = $clients->withSum(['accounts' => fn ($q) => $q->select(DB::raw('COALESCE(SUM(balance), 0)'))], 'balance');
 
-        if ($request->has('positive')) {
-            $clients = $clients->filter(
-                function ($client) {
-                    return $client->accounts_sum_balance <= 0;
-                }
-            );
+        if (request()->has('positive')) {
+            $clients->having('accounts_sum_balance', '<=', 0);
         }
-        if ($request->has('negative')) {
-            $clients = $clients->filter(
-                function ($client) {
-                    return $client->accounts_sum_balance > 0;
-                }
-            );
+
+        if (request()->has('negative')) {
+            $clients->having('accounts_sum_balance', '>', 0);
         }
-        // TODO: need to find a way to map over the collection and change 'null' to something actionalbe
-        if ($request->has('empty')) {
-            $clients = $clients->filter(
-                function ($client) {
-                    return $client->accounts_sum_balance !== null;
-                }
-            );
-        }
+
+        $clients = $clients->paginate(9);
         return view('clients.list', compact(['clients']));
     }
 
