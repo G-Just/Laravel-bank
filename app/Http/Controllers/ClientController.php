@@ -22,12 +22,36 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::paginate(9);
-        if (request()->has('search')) {
-            $clients = Client::where('firstName', 'like', '%' . request()->get('search', '') . '%')
-                ->orWhere('lastName', 'like', '%' . request()->get('search', '') . '%')
-                ->orWhere('personalCode', 'like', '%' . request()->get('search', '') . '%')
-                ->paginate(9);
+        $request = request();
+        $clients = Client::query();
+        if ($request->has('search')) {
+            $clients->where('firstName', 'like', '%' . $request->get('search', '') . '%')
+                ->orWhere('lastName', 'like', '%' . $request->get('search', '') . '%')
+                ->orWhere('personalCode', 'like', '%' . $request->get('search', '') . '%');
+        }
+        $clients = $clients->withSum('accounts', 'balance')->get();
+
+        if ($request->has('positive')) {
+            $clients = $clients->filter(
+                function ($client) {
+                    return $client->accounts_sum_balance <= 0;
+                }
+            );
+        }
+        if ($request->has('negative')) {
+            $clients = $clients->filter(
+                function ($client) {
+                    return $client->accounts_sum_balance > 0;
+                }
+            );
+        }
+        // TODO: need to find a way to map over the collection and change 'null' to something actionalbe
+        if ($request->has('empty')) {
+            $clients = $clients->filter(
+                function ($client) {
+                    return $client->accounts_sum_balance !== null;
+                }
+            );
         }
         return view('clients.list', compact(['clients']));
     }

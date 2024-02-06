@@ -1,11 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- search bar --}}
 
+    {{-- search bar --}}
     <div class="flex justify-center my-8 max-md:mx-4">
-        <form action={{ route('clients.list') }} method="GET"
-            class="items-center border-2 border-neutral-700 flex rounded-full bg-neutral-900 px-2 w-full max-w-[600px]">
+        <div class="relative flex items-center mr-4">
+            <button>
+                <img class="w-6 h-6" src="{{ asset('images/filter.svg') }}" alt="filter"
+                    onclick="
+                    const popup = document.getElementById('filters')
+                    if (popup.classList.contains('flex')){
+                        popup.classList.remove('flex')
+                        popup.classList.add('hidden')
+                    } else {
+                        popup.classList.add('flex')
+                        popup.classList.remove('hidden')
+                    };">
+            </button>
+            <div id='filters'
+                class="absolute flex-col hidden p-4 rounded-lg lg:-translate-x-1/2 w-96 bg-neutral-950 top-14 left-1/2">
+                <form action="{{ route('clients.list') }}" method="GET">
+                    <div>
+                        <input class="accent-lime-300"@if (request()->has('positive')) checked @endif type="checkbox"
+                            name="positive" id="positive">
+                        <label for="positive">Hide clients with positive balance</label>
+                    </div>
+                    <div>
+                        <input class="accent-lime-300"@if (request()->has('negative')) checked @endif type="checkbox"
+                            name="negative" id="negative">
+                        <label for="negative">Hide clients with negative or zero balance</label>
+                    </div>
+                    <div>
+                        <input class="accent-lime-300"@if (request()->has('empty')) checked @endif type="checkbox"
+                            name="empty" id="empty">
+                        <label for="empty">Hide clients without accounts</label>
+                    </div>
+            </div>
+        </div>
+        <div class="items-center border-2 border-neutral-700 flex rounded-full bg-neutral-900 px-2 w-full max-w-[600px]">
             @if (Request::get('search'))
                 <p class="flex gap-2 px-4 py-1 bg-black rounded-full">{{ app('request')->input('search') }}<a
                         href="{{ route('clients.list') }}">&#10005;</a></p>
@@ -23,7 +55,7 @@
                     </g>
                 </svg>
             </button>
-        </form>
+        </div>
     </div>
 
     <div class="grid grid-cols-3 px-20 max-2xl:grid-cols-2 max-lg:grid-cols-1 sm:gap-x-6 max-md:px-2">
@@ -31,7 +63,7 @@
         {{-- Individual client cards --}}
         @forelse ($clients as $client)
             <div
-                class="p-6 mb-6 border-2 rounded-lg max-md:p-2 hover:bg-neutral-900 hover:border-lime-600 h-72 bg-neutral-950 border-neutral-800">
+                class="p-6 mb-6 border-2 rounded-lg bg-neutral-950 max-md:p-2 hover:bg-neutral-900 hover:border-lime-600 h-72 border-neutral-800">
                 <a href="{{ route('clients.show', ['client' => $client->id]) }}">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
@@ -85,5 +117,5 @@
             <p class="mt-20 text-4xl text-center col-span-full">No data found</p>
         @endforelse
     </div>
-    <div class="flex justify-center pb-10"> {{ $clients->links() }}</div>
+    {{-- <div class="flex justify-center pb-10"> {{ $clients->links() }}</div> --}}
 @endsection

@@ -5,7 +5,7 @@
         <h3 class="mb-5 text-xl xl:text-2xl">
             Laravel-bank statistics
             <p class="text-base text-gray-600">
-                I can prove anything by statistics except the truth. </p>
+                I can prove anything by statistics, except the truth. </p>
         </h3>
 
         <div class="flex flex-col gap-5 mt-8 xl:flex-row">
